@@ -2,12 +2,12 @@ import java.io.*;
 
 
 public class HeapFile {
-    public static String PAGE_PATH = "disc/page";
+    public static String PAGE_PATH = "../disc/page";
 
     public void generateHeapFile(String path) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path)); 
-            reader.readLine(); 
+            reader.readLine();
             String line;
             long count = 0;
             int size = HeapPage.size / Record.bytes();
@@ -46,7 +46,7 @@ public class HeapFile {
 
     public static void main(String[] args) {
         HeapFile hf = new HeapFile();
-        hf.generateHeapFile("data/Pedestrian_volume__updated_monthly_.csv");
+        hf.generateHeapFile("../data/Pedestrian_volume__updated_monthly_.csv");
     }
 }
 
@@ -92,13 +92,7 @@ class HeapPage {
         return true;
     }
 
-    /***
-     *
-     * @param in
-     * @param len
-     * @return
-     * @throws IOException
-     */
+    
     public static byte[] readBytesFromInputStream(InputStream in,
                                                   int len) throws IOException {
         int readSize;
@@ -127,7 +121,7 @@ class HeapPage {
             System.out.println("read page file: " + path);
             in = new FileInputStream(file);
             for (int i = 0; i < page.records.length; i++) {
-
+                
                 byte[] tempbytes = readBytesFromInputStream(in, Record.bytes());
                 page.records[i] = Record.byteToRecord(tempbytes, 0);
             }
@@ -161,13 +155,6 @@ class HeapPage {
         }
     }
 
-    public static void main(String[] args) {
-        HeapPage page = new HeapPage(1);
-
-        HeapPage newPage = HeapPage.readFromFile("disc/page/33.page");
-        for (int i = 0; i < page.records.length; i++) {
-            System.out.println(newPage.records[i]);
-        }
-    }
+    
 
 }

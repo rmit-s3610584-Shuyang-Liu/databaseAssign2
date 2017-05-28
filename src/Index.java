@@ -1,15 +1,13 @@
 
 import java.util.Random;
 
-/**
- * Created by codoge on 2017/5/24.
- */
+
 public class Index {
     public static int MAX_ID = 1764576;
     public static int MAX_KEY = 11284;
     public static int MAX_PAGE_ID = 89695;
     BTree tree;
-    public static String INDEX_PATH = "disc/index";
+    public static String INDEX_PATH = "../disc/index";
 
     public Index() {
         tree = new BTree();
@@ -31,7 +29,7 @@ public class Index {
         System.out.println(tree);
         System.out.println();
 
-        tree.store("disc/index");
+        tree.store(INDEX_PATH);
 
     }
     public BTree.BTreeStore rebuildTree(String path) {
@@ -42,18 +40,14 @@ public class Index {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         Index index = new Index();
-//        index.buildIndex(HeapFile.PAGE_PATH);
+
         BTree.BTreeStore bst = index.rebuildTree(INDEX_PATH);
         long end = System.currentTimeMillis();
         System.out.println("Building index last for " + (end - start) + "ms.");
         Searcher searcher = new Searcher(bst);
         Random rand = new Random();
         start = System.currentTimeMillis();
-//        for (int i = 0; i < 3; i++) {
-//            int randomID = rand.nextInt(MAX_KEY) + 1;
-//            System.out.println(randomID);
-//            searcher.printSearch(randomID);
-//        }
+
         searcher.printSearch(9);
         searcher.printSearch(4712);
         searcher.printSearch(3682);

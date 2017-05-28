@@ -143,20 +143,20 @@ public class Record {
         byte[] b = new byte[Record.bytes()];
         int len = 0;
         try {
-            Class clazz = this.getClass();//根据类名获得其对应的Class对象 写上你想要的类名就是了 注意是全名 如果有包的话要加上 比如java.Lang.String
-            Field[] fields = clazz.getDeclaredFields();//根据Class对象获得属性 私有的也可以获得
+            Class clazz = this.getClass(); 
+            Field[] fields = clazz.getDeclaredFields(); 
             for(Field f : fields) {
                 f.setAccessible(true);
-                // 根据不同属性来选择不同的byte流转换函数
+                
                 if (f.getType().getName().equals("int")) {
                     int i = (int) f.get(this);
-//                    System.out.println(i);
+ 
                     byte[] bInt = Util.intToBytes(i);
                     System.arraycopy(bInt, 0, b, len, bInt.length);
                     len += bInt.length;
                 } else {
                     char[] c = (char[]) f.get(this);
-//                    System.out.println(c);
+ 
                     byte[] bCharArray = Util.charArrayToByte(c);
                     System.arraycopy(bCharArray, 0, b, len, bCharArray.length);
                     len += bCharArray.length;
@@ -172,11 +172,11 @@ public class Record {
         Record record = new Record();
         int start = offset;
         try {
-            Class clazz = record.getClass();//根据类名获得其对应的Class对象 写上你想要的类名就是了 注意是全名 如果有包的话要加上 比如java.Lang.String
-            Field[] fields = clazz.getDeclaredFields();//根据Class对象获得属性 私有的也可以获得
+            Class clazz = record.getClass(); 
+            Field[] fields = clazz.getDeclaredFields(); 
             for(Field f : fields) {
                 f.setAccessible(true);
-                // 根据不同属性来选择不同的byte流转换函数
+            
                 if (f.getType().getName().equals("int")) {
                     int value = Util.bytesToInt(b, start);
                     f.set(record, value);
