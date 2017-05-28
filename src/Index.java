@@ -2,9 +2,7 @@
 import java.io.File;
 import java.util.Random;
 
-/**
- * Created by codoge on 2017/5/24.
- */
+
 public class Index {
     public static int MAX_ID = 1764576;
     public static int MAX_KEY = 11284;
@@ -36,7 +34,7 @@ public class Index {
         System.out.println(tree);
         System.out.println();
 
-        tree.store("disc/index");
+        tree.store(INDEX_PATH);
 
     }
     public BTree.BTreeStore rebuildTree(String path) {
