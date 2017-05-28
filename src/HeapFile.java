@@ -1,22 +1,13 @@
 import java.io.*;
 
-/**
- * HeapFile is an implementation of a DbFile that stores a collection of tuples
- * in no particular order. Tuples are stored on pages, each of which is a fixed
- * size, and the file is simply a collection of those pages. HeapFile works
- * closely with HeapPage. The format of HeapPages is described in the HeapPage
- * constructor.
- *
- * @see
- * @author Sam Madden
- */
+
 public class HeapFile {
     public static String PAGE_PATH = "disc/page";
 
     public void generateHeapFile(String path) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));//换成你的文件名
-            reader.readLine();//第一行信息，为标题信息，不用，如果需要，注释掉
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            reader.readLine();
             String line;
             long count = 0;
             int size = HeapPage.size / Record.bytes();
@@ -30,8 +21,9 @@ public class HeapFile {
                     }
                     page = new HeapPage((int)(count / size));
                 }
-//                System.out.println(line);
-                String item[] = line.split(",");//CSV格式文件为逗号分隔符文件，这里根据逗号切分
+
+
+                String item[] = line.split(",");
                 page.addRecord(index, item);
                 count++;
             }
@@ -102,7 +94,6 @@ class HeapPage {
     }
 
     /***
-     * 从输入流获取字节数组,当文件很大时，报java.lang.OutOfMemoryError: Java heap space
      *
      * @param in
      * @param len
@@ -137,7 +128,7 @@ class HeapPage {
             System.out.println("read page file: " + path);
             in = new FileInputStream(file);
             for (int i = 0; i < page.records.length; i++) {
-                // 读入多个字节到字节数组中，byteread为一次读入的字节数
+               
                 byte[] tempbytes = readBytesFromInputStream(in, Record.bytes());
                 page.records[i] = Record.byteToRecord(tempbytes, 0);
             }
@@ -172,12 +163,9 @@ class HeapPage {
     }
 
     public static void main(String[] args) {
-//        System.out.println(Record.bytes());
+      
         HeapPage page = new HeapPage(1);
-//        for (int i = 0; i < page.records.length; i++) {
-//            page.records[i] = new Record(i, "2011-08-25", 2009+i,"March", 1, "Monday", 4, 9527, "LuoPing", 103);
-//        }
-//        page.writeToFile("disc", page.records.length);
+
         HeapPage newPage = HeapPage.readFromFile("disc/page/33.page");
         for (int i = 0; i < page.records.length; i++) {
             System.out.println(newPage.records[i]);

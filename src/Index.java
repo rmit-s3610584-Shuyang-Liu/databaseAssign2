@@ -42,18 +42,14 @@ public class Index {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         Index index = new Index();
-//        index.buildIndex(HeapFile.PAGE_PATH);
+
         BTree.BTreeStore bst = index.rebuildTree(INDEX_PATH);
         long end = System.currentTimeMillis();
         System.out.println("Building index last for " + (end - start) + "ms.");
         Searcher searcher = new Searcher(bst);
         Random rand = new Random();
         start = System.currentTimeMillis();
-//        for (int i = 0; i < 3; i++) {
-//            int randomID = rand.nextInt(MAX_KEY) + 1;
-//            System.out.println(randomID);
-//            searcher.printSearch(randomID);
-//        }
+
         searcher.printSearch(9);
         searcher.printSearch(4712);
         searcher.printSearch(3682);
