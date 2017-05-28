@@ -14,7 +14,7 @@ public class BTree implements Serializable{
     private static final int MAX_KEYS = M - 1;
     private BTreeStore store = new BTreeStore();
 
-    // helper B-tree node data type
+    // B-tree node data type
     private static final class Node implements Serializable {
         private int m;                               // number of children
         private Entry[] data = new Entry[M+1];       // 0, M position not used
