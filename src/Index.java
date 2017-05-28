@@ -50,11 +50,11 @@ public class Index {
 		for (int i = 0; i < 3; i++) {
 			int randomID = rand.nextInt(MAX_KEY) + 1;
 			System.out.println(randomID);
-
+			searcher.printSearch(randomID);
 		}
-		searcher.printSearch(9);
-		searcher.printSearch(4712);
-		searcher.printSearch(3682);
+		//searcher.printSearch(9);
+		//searcher.printSearch(4712);
+		//searcher.printSearch(3682);
 		end = System.currentTimeMillis();
 		System.out.println("Using index to search spending " + (end - start) / 3 + "ms for average.");
 	}
