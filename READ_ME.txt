@@ -9,3 +9,8 @@ Index.java: INDEX_PATH
 *********Change Page Size********
 
 `To Change page size, change the corresponding variable in the HeapFile.java/HeapPage class 
+
+**********Data File***********
+the .csv file should be in the folder data. 
+The file name MUST BE:
+Pedestrian_volume__updated_monthly_.csv
